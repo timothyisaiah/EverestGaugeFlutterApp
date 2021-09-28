@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_gifs/loading_gifs.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -11,11 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'KINTU Learning Center',
+      title: 'EG Learning Center',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'KINTU Learning Center'),
+      home: MyHomePage(title: 'EG Learning Center'),
     );
   }
 }
@@ -37,10 +39,10 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.shopping_bag,
-            color: Colors.black,
-            size: 150.0,
+          Image(
+            image: AssetImage('img/shop.png'),
+            height: 150,
+            width: 150,
           ),
           Text('Shop'),
         ],
@@ -50,36 +52,38 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.bar_chart,
-            color: Colors.black,
-            size: 150.0,
+          Image(
+            image: AssetImage('img/grades.png'),
+            height: 150,
+            width: 150,
           ),
           Text('Grader'),
         ],
       ),
+      // color: Colors.black45,
     ),
     Card(
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.stacked_line_chart,
-            color: Colors.black,
-            size: 150.0,
+          Image(
+            image: AssetImage('img/learn.jpg'),
+            height: 150,
+            width: 150,
           ),
           Text('Learning'),
         ],
       ),
+      // color: Colors.black45,
     ),
     Card(
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.list,
-            color: Colors.black,
-            size: 150.0,
+          Image(
+            image: AssetImage('img/report.png'),
+            height: 150,
+            width: 150,
           ),
           Text('Reports'),
         ],
@@ -97,16 +101,30 @@ class _HomeMenuState extends State<HomeMenu> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Icon(
-            Icons.school,
-            size: 150.0,
+          // Icon(
+          //   Icons.school,
+          //   size: 150.0,
+          // ),
+          Image(
+            image: AssetImage('./img/logo.png'),
+            height: 150,
+            width: 150,
           ),
-          Text(
-            'EG LEARNING CENTER',
-            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              '  EG LEARNING CENTER  ',
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                backgroundColor: Colors.black45,
+                color: Colors.white,
+              ),
+            ),
           ),
+
           Expanded(
-            child: GridView.count(
+            child:Card(child:  GridView.count(
               crossAxisCount: 2,
               crossAxisSpacing: 4.0,
               mainAxisSpacing: 8.0,
@@ -116,15 +134,18 @@ class _HomeMenuState extends State<HomeMenu> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => _classViews[index]),
+                      MaterialPageRoute(
+                          builder: (context) => _classViews[index]),
                     );
                   },
                 );
               }),
             ),
+            color: Colors.black45,),
           ),
         ],
       ),
+      backgroundColor: Colors.blue.shade400,
     );
   }
 }
@@ -159,6 +180,8 @@ class Reports extends StatefulWidget {
 class ReportsState extends State<Reports> {
   @override
   Widget build(BuildContext context) {
+    FadeInImage.assetNetwork(
+        placeholder: cupertinoActivityIndicator, image: 'img/loader.png');
     return Scaffold(
       body: WebView(
         key: UniqueKey(),
@@ -320,16 +343,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shop',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
@@ -342,6 +362,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.list_outlined),
             label: 'Reports',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Shop',
           ),
         ],
         currentIndex: _selectedIndex,
