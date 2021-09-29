@@ -1,4 +1,4 @@
-name: kintu
+name: eg_learning_center
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -39,7 +39,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "img/logo.png"
+  image_path: "img/eglearning.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

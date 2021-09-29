@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EG Learning Center',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'EG Learning Center'),
     );
@@ -91,10 +91,10 @@ class _HomeMenuState extends State<HomeMenu> {
     ),
   ];
   List<Widget> _classViews = <Widget>[
+    Shop(),
+    Grader(),
     Elearners(),
     Reports(),
-    Grader(),
-    Shop(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -124,28 +124,30 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
 
           Expanded(
-            child:Card(child:  GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 8.0,
-              children: List.generate(_cardsToDisplay.length, (index) {
-                return InkWell(
-                  child: _cardsToDisplay[index],
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => _classViews[index]),
-                    );
-                  },
-                );
-              }),
+            child: Card(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 4.0,
+                mainAxisSpacing: 8.0,
+                children: List.generate(_cardsToDisplay.length, (index) {
+                  return InkWell(
+                    child: _cardsToDisplay[index],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => _classViews[index]),
+                      );
+                    },
+                  );
+                }),
+              ),
+              color: Colors.black45,
             ),
-            color: Colors.black45,),
           ),
         ],
       ),
-      backgroundColor: Colors.blue.shade400,
+      backgroundColor: Colors.green,
     );
   }
 }
@@ -276,80 +278,22 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
-  // static List<Widget> _cardsToDisplay = <Widget>[
-  //   //  InkWell(
-  //   //       onTap: () {
-  //   //         setState(() {
-  //   //           sideLength == 50 ? sideLength = 100 : sideLength = 50;
-  //   //         });
-  //   //       },
-  //   //     ),
-  //   Card(
-  //     key: UniqueKey(),
-  //     child: Column(
-  //       children: const <Widget>[
-  //         Icon(
-  //           Icons.shopping_bag,
-  //           color: Colors.black,
-  //           size: 150.0,
-  //         ),
-  //         Text('Shop'),
-  //       ],
-  //     ),
-  //   ),
-  //   Card(
-  //     key: UniqueKey(),
-  //     child: Column(
-  //       children: const <Widget>[
-  //         Icon(
-  //           Icons.bar_chart,
-  //           color: Colors.black,
-  //           size: 150.0,
-  //         ),
-  //         Text('Grader'),
-  //       ],
-  //     ),
-  //   ),
-  //   Card(
-  //     key: UniqueKey(),
-  //     child: Column(
-  //       children: const <Widget>[
-  //         Icon(
-  //           Icons.stacked_line_chart,
-  //           color: Colors.black,
-  //           size: 150.0,
-  //         ),
-  //         Text('Learning'),
-  //       ],
-  //     ),
-  //   ),
-  //   Card(
-  //     key: UniqueKey(),
-  //     child: Column(
-  //       children: const <Widget>[
-  //         Icon(
-  //           Icons.list,
-  //           color: Colors.black,
-  //           size: 150.0,
-  //         ),
-  //         Text('Reports'),
-  //       ],
-  //     ),
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Shop',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
@@ -362,10 +306,6 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.list_outlined),
             label: 'Reports',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shop',
           ),
         ],
         currentIndex: _selectedIndex,
