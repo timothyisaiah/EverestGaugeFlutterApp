@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'EG Learning Center',
+      title: 'KINTU Learning Center',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'EG Learning Center'),
+      home: MyHomePage(title: 'KINTU Learning Center'),
     );
   }
 }
@@ -106,19 +106,21 @@ class _HomeMenuState extends State<HomeMenu> {
           //   size: 150.0,
           // ),
           Image(
-            image: AssetImage('./img/logo.png'),
+            image: AssetImage('./img/kintulogo.png'),
             height: 150,
             width: 150,
           ),
           Padding(
             padding: EdgeInsets.all(16.0),
-            child: Text(
-              '  EG LEARNING CENTER  ',
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                backgroundColor: Colors.black45,
-                color: Colors.white,
+            child: Center(
+              child: Text(
+                'KINTU LEARNING CENTER',
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  backgroundColor: Colors.black45,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -147,7 +149,7 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
         ],
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.blue.shade400,
     );
   }
 }
@@ -165,7 +167,7 @@ class _ElearnersState extends State<Elearners> {
     return Scaffold(
       body: WebView(
         key: UniqueKey(),
-        initialUrl: 'https://everestgauge.org/courses',
+        initialUrl: 'https://www.everestgauge.com/learn',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
@@ -187,7 +189,7 @@ class ReportsState extends State<Reports> {
     return Scaffold(
       body: WebView(
         key: UniqueKey(),
-        initialUrl: 'https://everestgauge.org/login',
+        initialUrl: 'https://everestgauge.com/campuses/kayiwa/index.php',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
@@ -207,7 +209,7 @@ class GraderState extends State<Grader> {
     return Scaffold(
       body: WebView(
         key: UniqueKey(),
-        initialUrl: 'https://everestgauge.com/grader',
+        initialUrl: 'https://www.everestgauge.com/grader',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
@@ -227,7 +229,7 @@ class ShopState extends State<Shop> {
     return Scaffold(
       body: WebView(
         key: UniqueKey(),
-        initialUrl: 'https://www.toweroflove.org/product/',
+        initialUrl: 'https://www.toweroflove.org/shop',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
@@ -258,32 +260,94 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeMenu(),
     WebView(
       key: UniqueKey(),
-      initialUrl: 'https://www.toweroflove.org/product/',
+      initialUrl: 'https://www.toweroflove.org/shop',
       javascriptMode: JavascriptMode.unrestricted,
     ),
     WebView(
       key: UniqueKey(),
-      initialUrl: 'https://everestgauge.com/grader',
+      initialUrl: 'https://www.everestgauge.com/grader',
       javascriptMode: JavascriptMode.unrestricted,
     ),
     WebView(
       key: UniqueKey(),
-      initialUrl: 'https://everestgauge.org/courses',
+      initialUrl: 'https://www.everestgauge.com/learn',
       javascriptMode: JavascriptMode.unrestricted,
     ),
     WebView(
       key: UniqueKey(),
-      initialUrl: 'https://everestgauge.org/login',
+      initialUrl: 'https://everestgauge.com/campuses/kayiwa/index.php',
       javascriptMode: JavascriptMode.unrestricted,
     ),
   ];
+
+  // static List<Widget> _cardsToDisplay = <Widget>[
+  //   //  InkWell(
+  //   //       onTap: () {
+  //   //         setState(() {
+  //   //           sideLength == 50 ? sideLength = 100 : sideLength = 50;
+  //   //         });
+  //   //       },
+  //   //     ),
+  //   Card(
+  //     key: UniqueKey(),
+  //     child: Column(
+  //       children: const <Widget>[
+  //         Icon(
+  //           Icons.shopping_bag,
+  //           color: Colors.black,
+  //           size: 150.0,
+  //         ),
+  //         Text('Shop'),
+  //       ],
+  //     ),
+  //   ),
+  //   Card(
+  //     key: UniqueKey(),
+  //     child: Column(
+  //       children: const <Widget>[
+  //         Icon(
+  //           Icons.bar_chart,
+  //           color: Colors.black,
+  //           size: 150.0,
+  //         ),
+  //         Text('Grader'),
+  //       ],
+  //     ),
+  //   ),
+  //   Card(
+  //     key: UniqueKey(),
+  //     child: Column(
+  //       children: const <Widget>[
+  //         Icon(
+  //           Icons.stacked_line_chart,
+  //           color: Colors.black,
+  //           size: 150.0,
+  //         ),
+  //         Text('Learning'),
+  //       ],
+  //     ),
+  //   ),
+  //   Card(
+  //     key: UniqueKey(),
+  //     child: Column(
+  //       children: const <Widget>[
+  //         Icon(
+  //           Icons.list,
+  //           color: Colors.black,
+  //           size: 150.0,
+  //         ),
+  //         Text('Reports'),
+  //       ],
+  //     ),
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

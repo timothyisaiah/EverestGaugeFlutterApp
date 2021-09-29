@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kintu">
    <application
-        android:label="Eg Learning Center"
+        android:label="KINTU Learning Center"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
