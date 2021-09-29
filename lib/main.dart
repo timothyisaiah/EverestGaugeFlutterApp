@@ -106,22 +106,37 @@ class _HomeMenuState extends State<HomeMenu> {
           //   size: 150.0,
           // ),
           Image(
-            image: AssetImage('./img/kintulogo.png'),
+            image: AssetImage('./img/kintu.png'),
             height: 150,
             width: 150,
           ),
           Padding(
             padding: EdgeInsets.all(16.0),
-            child: Center(
-              child: Text(
-                'KINTU LEARNING CENTER',
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  backgroundColor: Colors.black45,
-                  color: Colors.white,
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'KINTU LEARNING',
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black45,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+                Center(
+                  child: Text(
+                    'CENTER',
+                    style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black45,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -162,13 +177,39 @@ class Elearners extends StatefulWidget {
 }
 
 class _ElearnersState extends State<Elearners> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('KINTU Learning Center'),
+        backgroundColor: Colors.blue,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://www.everestgauge.com/learn',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.stacked_line_chart),
+            label: 'Learning',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -182,15 +223,41 @@ class Reports extends StatefulWidget {
 }
 
 class ReportsState extends State<Reports> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     FadeInImage.assetNetwork(
         placeholder: cupertinoActivityIndicator, image: 'img/loader.png');
     return Scaffold(
+      appBar: AppBar(
+        title: Text('KINTU Learning Center'),
+        backgroundColor: Colors.blue,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://everestgauge.com/campuses/kayiwa/index.php',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_outlined),
+            label: 'Reports',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -204,13 +271,39 @@ class Grader extends StatefulWidget {
 }
 
 class GraderState extends State<Grader> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('KINTU Learning Center'),
+        backgroundColor: Colors.blue,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://www.everestgauge.com/grader',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Grader',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -224,13 +317,39 @@ class Shop extends StatefulWidget {
 }
 
 class ShopState extends State<Shop> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('KINTU Learning Center'),
+        backgroundColor: Colors.blue,
+      ),
       body: WebView(
         key: UniqueKey(),
-        initialUrl: 'https://www.toweroflove.org/shop',
+        initialUrl: 'https://www.toweroflove.org/product',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Shop',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -260,7 +379,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeMenu(),
     WebView(
       key: UniqueKey(),
-      initialUrl: 'https://www.toweroflove.org/shop',
+      initialUrl: 'https://www.toweroflove.org/product',
       javascriptMode: JavascriptMode.unrestricted,
     ),
     WebView(
