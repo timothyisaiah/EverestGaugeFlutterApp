@@ -41,8 +41,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/shop.png'),
-            height: 150,
-            width: 150,
+            height: 100,
+            width: 100,
           ),
           Text('Shop'),
         ],
@@ -54,8 +54,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/grades.png'),
-            height: 150,
-            width: 150,
+            height: 100,
+            width: 100,
           ),
           Text('Grader'),
         ],
@@ -68,8 +68,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/learn.jpg'),
-            height: 150,
-            width: 150,
+            height: 100,
+            width: 100,
           ),
           Text('Learning'),
         ],
@@ -82,8 +82,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/report.png'),
-            height: 150,
-            width: 150,
+            height: 100,
+            width: 100,
           ),
           Text('Reports'),
         ],
@@ -103,11 +103,11 @@ class _HomeMenuState extends State<HomeMenu> {
         children: <Widget>[
           // Icon(
           //   Icons.school,
-          //   size: 150.0,
+          //   size: 100.0,
           // ),
           Image(
             image: AssetImage('./img/logo.png'),
-            height: 150,
+            height: 180,
             width: 150,
           ),
           Padding(
@@ -160,13 +160,39 @@ class Elearners extends StatefulWidget {
 }
 
 class _ElearnersState extends State<Elearners> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Eg Learning Center'),
+        backgroundColor: Colors.green,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://everestgauge.org/courses',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.stacked_line_chart),
+            label: 'Learning',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -180,15 +206,41 @@ class Reports extends StatefulWidget {
 }
 
 class ReportsState extends State<Reports> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     FadeInImage.assetNetwork(
         placeholder: cupertinoActivityIndicator, image: 'img/loader.png');
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Eg Learning Center'),
+        backgroundColor: Colors.green,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://everestgauge.org/login',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_outlined),
+            label: 'Reports',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -202,13 +254,39 @@ class Grader extends StatefulWidget {
 }
 
 class GraderState extends State<Grader> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Eg Learning Center'),
+        backgroundColor: Colors.green,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://everestgauge.com/grader',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Grader',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -222,13 +300,39 @@ class Shop extends StatefulWidget {
 }
 
 class ShopState extends State<Shop> {
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Eg Learning Center'),
+        backgroundColor: Colors.green,
+      ),
       body: WebView(
         key: UniqueKey(),
         initialUrl: 'https://www.toweroflove.org/product/',
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Shop',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
