@@ -43,8 +43,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/shop.png'),
-            height: 100,
-            width: 100,
+            height: 150,
+            width: 150,
           ),
           Text('Shop'),
         ],
@@ -56,8 +56,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/grades.png'),
-            height: 100,
-            width: 100,
+            height: 150,
+            width: 150,
           ),
           Text('Grader'),
         ],
@@ -70,8 +70,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/learn.jpg'),
-            height: 100,
-            width: 100,
+            height: 150,
+            width: 150,
           ),
           Text('Learning'),
         ],
@@ -84,8 +84,8 @@ class _HomeMenuState extends State<HomeMenu> {
         children: const <Widget>[
           Image(
             image: AssetImage('img/report.png'),
-            height: 100,
-            width: 100,
+            height: 150,
+            width: 150,
           ),
           Text('Reports'),
         ],
@@ -105,7 +105,7 @@ class _HomeMenuState extends State<HomeMenu> {
         children: <Widget>[
           // Icon(
           //   Icons.school,
-          //   size: 100.0,
+          //   size: 150.0,
           // ),
           Image(
             image: AssetImage('./img/logo.png'),
