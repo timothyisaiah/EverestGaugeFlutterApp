@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_gifs/loading_gifs.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'EG Learning Center'),
+      home: MyHomePage(key: UniqueKey(), title: 'EG Learning Center'),
     );
   }
 }
@@ -26,9 +28,9 @@ class MyApp extends StatelessWidget {
 class HomeMenu extends StatefulWidget {
   // HomeMenu({Key key, this.title}) : super(key: key);
   // final String title;
-  final int selectedindex;
-  final Function onItemTapped;
-  HomeMenu({this.selectedindex, this.onItemTapped});
+  // final int selectedindex;
+  // final Function onItemTapped;
+  // HomeMenu({required this.selectedindex, required this.onItemTapped});
   @override
   _HomeMenuState createState() => _HomeMenuState();
 }
@@ -91,10 +93,10 @@ class _HomeMenuState extends State<HomeMenu> {
     ),
   ];
   List<Widget> _classViews = <Widget>[
-    Shop(),
-    Grader(),
-    Elearners(),
-    Reports(),
+    Shop(key: UniqueKey(),),
+    Grader(key: UniqueKey(),),
+    Elearners(key: UniqueKey(),),
+    Reports(key: UniqueKey(),),
   ];
   @override
   Widget build(BuildContext context) {
@@ -153,7 +155,7 @@ class _HomeMenuState extends State<HomeMenu> {
 }
 
 class Elearners extends StatefulWidget {
-  Elearners({Key key}) : super(key: key);
+  Elearners({required Key key}) : super(key: key);
 
   @override
   _ElearnersState createState() => _ElearnersState();
@@ -165,6 +167,13 @@ class _ElearnersState extends State<Elearners> {
     if (index == 0) {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -199,7 +208,7 @@ class _ElearnersState extends State<Elearners> {
 }
 
 class Reports extends StatefulWidget {
-  Reports({Key key}) : super(key: key);
+  Reports({required Key key}) : super(key: key);
 
   @override
   ReportsState createState() => ReportsState();
@@ -211,6 +220,13 @@ class ReportsState extends State<Reports> {
     if (index == 0) {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -247,7 +263,7 @@ class ReportsState extends State<Reports> {
 }
 
 class Grader extends StatefulWidget {
-  Grader({Key key}) : super(key: key);
+  Grader({required Key key}) : super(key: key);
 
   @override
   GraderState createState() => GraderState();
@@ -259,6 +275,13 @@ class GraderState extends State<Grader> {
     if (index == 0) {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -293,7 +316,7 @@ class GraderState extends State<Grader> {
 }
 
 class Shop extends StatefulWidget {
-  Shop({Key key}) : super(key: key);
+  Shop({required Key key}) : super(key: key);
 
   @override
   ShopState createState() => ShopState();
@@ -305,6 +328,13 @@ class ShopState extends State<Shop> {
     if (index == 0) {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   @override
@@ -339,7 +369,7 @@ class ShopState extends State<Shop> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
   // MyHomePage({});
 
   final String title;
@@ -356,6 +386,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   static List<Widget> _pages = <Widget>[
