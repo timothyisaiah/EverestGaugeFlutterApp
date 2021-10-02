@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'KINTU Learning Center'),
+      home: MyHomePage(key: UniqueKey(), title: 'KINTU Learning Center'),
     );
   }
 }
@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
 class HomeMenu extends StatefulWidget {
   // HomeMenu({Key key, this.title}) : super(key: key);
   // final String title;
-  final int selectedindex;
-  final Function onItemTapped;
-  HomeMenu({this.selectedindex, this.onItemTapped});
+  // final int selectedindex;
+  // final Function onItemTapped;
+  // HomeMenu({required this.selectedindex, this.onItemTapped});
   @override
   _HomeMenuState createState() => _HomeMenuState();
 }
@@ -44,7 +44,7 @@ class _HomeMenuState extends State<HomeMenu> {
             height: 150,
             width: 150,
           ),
-          Text('Shop'),
+          // Text('Shop'),
         ],
       ),
     ),
@@ -57,7 +57,7 @@ class _HomeMenuState extends State<HomeMenu> {
             height: 150,
             width: 150,
           ),
-          Text('Grader'),
+          // Text('Grader'),
         ],
       ),
       // color: Colors.black45,
@@ -67,11 +67,11 @@ class _HomeMenuState extends State<HomeMenu> {
       child: Column(
         children: const <Widget>[
           Image(
-            image: AssetImage('img/learn.jpg'),
+            image: AssetImage('img/learn.png'),
             height: 150,
             width: 150,
           ),
-          Text('Learning'),
+          // Text('Learning'),
         ],
       ),
       // color: Colors.black45,
@@ -85,16 +85,16 @@ class _HomeMenuState extends State<HomeMenu> {
             height: 150,
             width: 150,
           ),
-          Text('Reports'),
+          // Text('Reports'),
         ],
       ),
     ),
   ];
   List<Widget> _classViews = <Widget>[
-    Shop(),
-    Grader(),
-    Elearners(),
-    Reports(),
+    Shop(key: UniqueKey(),),
+    Grader(key: UniqueKey(),),
+    Elearners(key: UniqueKey(),),
+    Reports(key: UniqueKey(),),
   ];
   @override
   Widget build(BuildContext context) {
@@ -116,26 +116,26 @@ class _HomeMenuState extends State<HomeMenu> {
               children: [
                 Center(
                   child: Text(
-                    'KINTU LEARNING',
+                    ' Welcome, Select Option. ',
                     style: const TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black45,
-                      color: Colors.white,
+                      // backgroundColor: Colors.black45,
+                      color: Colors.blue,
                     ),
                   ),
                 ),
-                Center(
-                  child: Text(
-                    'CENTER',
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black45,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                // Center(
+                //   child: Text(
+                //     'CENTER',
+                //     style: const TextStyle(
+                //       fontSize: 30,
+                //       fontWeight: FontWeight.bold,
+                //       // backgroundColor: Colors.black45,
+                //       color:  Colors.blue,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -159,18 +159,18 @@ class _HomeMenuState extends State<HomeMenu> {
                   );
                 }),
               ),
-              color: Colors.black45,
+              // color: Colors.black45,
             ),
           ),
         ],
       ),
-      backgroundColor: Colors.blue.shade400,
+      // backgroundColor: Colors.blue.shade400,
     );
   }
 }
 
 class Elearners extends StatefulWidget {
-  Elearners({Key key}) : super(key: key);
+  Elearners({required Key key}) : super(key: key);
 
   @override
   _ElearnersState createState() => _ElearnersState();
@@ -189,7 +189,7 @@ class _ElearnersState extends State<Elearners> {
     return Scaffold(
       appBar: AppBar(
         title: Text('KINTU Learning Center'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade400,
       ),
       body: WebView(
         key: UniqueKey(),
@@ -216,7 +216,7 @@ class _ElearnersState extends State<Elearners> {
 }
 
 class Reports extends StatefulWidget {
-  Reports({Key key}) : super(key: key);
+  Reports({required Key key}) : super(key: key);
 
   @override
   ReportsState createState() => ReportsState();
@@ -237,7 +237,7 @@ class ReportsState extends State<Reports> {
     return Scaffold(
       appBar: AppBar(
         title: Text('KINTU Learning Center'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade400,
       ),
       body: WebView(
         key: UniqueKey(),
@@ -264,7 +264,7 @@ class ReportsState extends State<Reports> {
 }
 
 class Grader extends StatefulWidget {
-  Grader({Key key}) : super(key: key);
+  Grader({required Key key}) : super(key: key);
 
   @override
   GraderState createState() => GraderState();
@@ -310,7 +310,7 @@ class GraderState extends State<Grader> {
 }
 
 class Shop extends StatefulWidget {
-  Shop({Key key}) : super(key: key);
+  Shop({required Key key}) : super(key: key);
 
   @override
   ShopState createState() => ShopState();
@@ -356,7 +356,7 @@ class ShopState extends State<Shop> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
   // MyHomePage({});
 
   final String title;
