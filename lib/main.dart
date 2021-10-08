@@ -1,11 +1,20 @@
 import 'dart:io';
 
+import 'package:eg_learning_center/Screens/Elearners.dart';
+import 'package:eg_learning_center/Screens/Grader.dart';
+import 'package:eg_learning_center/Screens/Reports.dart';
+import 'package:eg_learning_center/Screens/Shop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_gifs/loading_gifs.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart' hide WebView;
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
   runApp(MyApp());
 }
 
@@ -93,10 +102,18 @@ class _HomeMenuState extends State<HomeMenu> {
     ),
   ];
   List<Widget> _classViews = <Widget>[
-    Shop(key: UniqueKey(),),
-    Grader(key: UniqueKey(),),
-    Elearners(key: UniqueKey(),),
-    Reports(key: UniqueKey(),),
+    Shop(
+      key: UniqueKey(),
+    ),
+    Grader(
+      key: UniqueKey(),
+    ),
+    Elearners(
+      key: UniqueKey(),
+    ),
+    Reports(
+      key: UniqueKey(),
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -115,9 +132,9 @@ class _HomeMenuState extends State<HomeMenu> {
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              '  EG LEARNING CENTER  ',
+              ' Welcome, Select option ',
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
                 backgroundColor: Colors.black45,
                 color: Colors.white,
@@ -154,220 +171,6 @@ class _HomeMenuState extends State<HomeMenu> {
   }
 }
 
-class Elearners extends StatefulWidget {
-  Elearners({required Key key}) : super(key: key);
-
-  @override
-  _ElearnersState createState() => _ElearnersState();
-}
-
-class _ElearnersState extends State<Elearners> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Eg Learning Center'),
-        backgroundColor: Colors.green,
-      ),
-      body: WebView(
-        key: UniqueKey(),
-        initialUrl: 'https://everestgauge.org/courses',
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.stacked_line_chart),
-            label: 'Learning',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
-  }
-}
-
-class Reports extends StatefulWidget {
-  Reports({required Key key}) : super(key: key);
-
-  @override
-  ReportsState createState() => ReportsState();
-}
-
-class ReportsState extends State<Reports> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    FadeInImage.assetNetwork(
-        placeholder: cupertinoActivityIndicator, image: 'img/loader.png');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Eg Learning Center'),
-        backgroundColor: Colors.green,
-      ),
-      body: WebView(
-        key: UniqueKey(),
-        initialUrl: 'https://everestgauge.org/login',
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_outlined),
-            label: 'Reports',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
-  }
-}
-
-class Grader extends StatefulWidget {
-  Grader({required Key key}) : super(key: key);
-
-  @override
-  GraderState createState() => GraderState();
-}
-
-class GraderState extends State<Grader> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Eg Learning Center'),
-        backgroundColor: Colors.green,
-      ),
-      body: WebView(
-        key: UniqueKey(),
-        initialUrl: 'https://everestgauge.com/grader',
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: 'Grader',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
-  }
-}
-
-class Shop extends StatefulWidget {
-  Shop({required Key key}) : super(key: key);
-
-  @override
-  ShopState createState() => ShopState();
-}
-
-class ShopState extends State<Shop> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Eg Learning Center'),
-        backgroundColor: Colors.green,
-      ),
-      body: WebView(
-        key: UniqueKey(),
-        initialUrl: 'https://www.toweroflove.org/product/',
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Shop',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({required Key key, required this.title}) : super(key: key);
   // MyHomePage({});
@@ -388,6 +191,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  late InAppWebViewController webView;
+
   @override
   void initState() {
     super.initState();
@@ -395,22 +200,76 @@ class _MyHomePageState extends State<MyHomePage> {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
-  static List<Widget> _pages = <Widget>[
+  List<Widget> _pages = <Widget>[
     HomeMenu(),
-    WebView(
-      key: UniqueKey(),
-      initialUrl: 'https://www.toweroflove.org/product/',
-      javascriptMode: JavascriptMode.unrestricted,
+    InAppWebView(
+      initialUrlRequest: URLRequest(
+          url: Uri.parse('https://www.toweroflove.org/product/'),
+          headers: {},
+          method: 'POST'),
+      initialOptions: InAppWebViewGroupOptions(
+        crossPlatform: InAppWebViewOptions(
+            javaScriptEnabled: true, useOnDownloadStart: true),
+      ),
+      onWebViewCreated: (InAppWebViewController controller) {
+        // webView = controller;
+      },
+      onLoadStart: (InAppWebViewController controller, Uri? url) {},
+      onLoadStop: (InAppWebViewController controller, Uri? url) {},
+      onDownloadStart: (controller, url) async {
+        if (await Permission.storage.request().isGranted) {
+          print("onDownloadStart $url");
+          final taskId = await FlutterDownloader.enqueue(
+            url: url.path,
+            savedDir: (await getExternalStorageDirectory())!.path,
+            showNotification:
+                true, // show download progress in status bar (for Android)
+            openFileFromNotification:
+                true, // click on notification to open downloaded file (for Android)
+          );
+        } else if (await Permission.storage.request().isPermanentlyDenied) {
+          await openAppSettings();
+        } else if (await Permission.storage.request().isDenied) {
+          await openAppSettings();
+        }
+      },
     ),
     WebView(
       key: UniqueKey(),
       initialUrl: 'https://everestgauge.com/grader',
       javascriptMode: JavascriptMode.unrestricted,
     ),
-    WebView(
-      key: UniqueKey(),
-      initialUrl: 'https://everestgauge.org/courses',
-      javascriptMode: JavascriptMode.unrestricted,
+    InAppWebView(
+      initialUrlRequest: URLRequest(
+          url: Uri.parse('https://everestgauge.org/courses'),
+          headers: {},
+          method: 'POST'),
+      initialOptions: InAppWebViewGroupOptions(
+        crossPlatform: InAppWebViewOptions(
+            javaScriptEnabled: true, useOnDownloadStart: true),
+      ),
+      onWebViewCreated: (InAppWebViewController controller) {
+        // webView = controller;
+      },
+      onLoadStart: (InAppWebViewController controller, Uri? url) {},
+      onLoadStop: (InAppWebViewController controller, Uri? url) {},
+      onDownloadStart: (controller, url) async {
+        if (await Permission.storage.request().isGranted) {
+          print("onDownloadStart $url");
+          final taskId = await FlutterDownloader.enqueue(
+            url: url.path,
+            savedDir: (await getExternalStorageDirectory())!.path,
+            showNotification:
+                true, // show download progress in status bar (for Android)
+            openFileFromNotification:
+                true, // click on notification to open downloaded file (for Android)
+          );
+        } else if (await Permission.storage.request().isPermanentlyDenied) {
+          await openAppSettings();
+        } else if (await Permission.storage.request().isDenied) {
+          await openAppSettings();
+        }
+      },
     ),
     WebView(
       key: UniqueKey(),
