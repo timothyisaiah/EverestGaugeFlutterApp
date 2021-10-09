@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:eg_learning_center/Screens/Elearners.dart';
 import 'package:eg_learning_center/Screens/Grader.dart';
@@ -183,6 +185,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0; //index of selected tab on bottom navigation
+  ReceivePort _port = ReceivePort();
 
   //Selecting active tab on bottom navigation
   void _onItemTapped(int index) {
@@ -198,6 +201,29 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    IsolateNameServer.registerPortWithName(
+        _port.sendPort, 'downloader_send_port');
+    _port.listen((dynamic data) {
+      String id = data[0];
+      DownloadTaskStatus status = data[1];
+      int progress = data[2];
+      setState(() {});
+    });
+
+    FlutterDownloader.registerCallback(downloadCallback);
+  }
+
+  @override
+  void dispose() {
+    IsolateNameServer.removePortNameMapping('downloader_send_port');
+    super.dispose();
+  }
+
+  static void downloadCallback(
+      String id, DownloadTaskStatus status, int progress) {
+    final SendPort send =
+        IsolateNameServer.lookupPortByName('downloader_send_port')!;
+    send.send([id, status, progress]);
   }
 
   List<Widget> _pages = <Widget>[
@@ -257,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
         if (await Permission.storage.request().isGranted) {
           print("onDownloadStart $url");
           final taskId = await FlutterDownloader.enqueue(
-            url: url.path,
+            url: 'https://www.toweroflove.org' + url.path,
             savedDir: (await getExternalStorageDirectory())!.path,
             showNotification:
                 true, // show download progress in status bar (for Android)

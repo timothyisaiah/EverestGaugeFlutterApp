@@ -1,5 +1,8 @@
 // import 'dart:io';
 
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -17,20 +20,44 @@ class Shop extends StatefulWidget {
 
 class ShopState extends State<Shop> {
   int _selectedIndex = 1;
+  ReceivePort _port = ReceivePort();
+
   void _onItemTapped(int index) {
     if (index == 0) {
       Navigator.pop(context);
     }
   }
+
   late InAppWebViewController webView;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Enable hybrid composition.
-  //   if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  // }
+  @override
+  void initState() {
+    super.initState();
 
+    IsolateNameServer.registerPortWithName(
+        _port.sendPort, 'downloader_send_port');
+    _port.listen((dynamic data) {
+      String id = data[0];
+      DownloadTaskStatus status = data[1];
+      int progress = data[2];
+      setState(() {});
+    });
+
+    FlutterDownloader.registerCallback(downloadCallback);
+  }
+  
+  @override
+  void dispose() {
+    IsolateNameServer.removePortNameMapping('downloader_send_port');
+    super.dispose();
+  }
+
+  static void downloadCallback(
+      String id, DownloadTaskStatus status, int progress) {
+    final SendPort send =
+        IsolateNameServer.lookupPortByName('downloader_send_port')!;
+    send.send([id, status, progress]);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +83,7 @@ class ShopState extends State<Shop> {
           if (await Permission.storage.request().isGranted) {
             print("onDownloadStart $url");
             final taskId = await FlutterDownloader.enqueue(
-              url: url.path,
+              url: 'https://www.toweroflove.org' + url.path,
               savedDir: (await getExternalStorageDirectory())!.path,
               showNotification:
                   true, // show download progress in status bar (for Android)
