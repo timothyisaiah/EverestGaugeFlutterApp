@@ -56,12 +56,13 @@ class _ElearnersState extends State<Elearners> {
           if (await Permission.storage.request().isGranted) {
             print("onDownloadStart $url");
             final taskId = await FlutterDownloader.enqueue(
-              url: url.path,
+              url: 'https://everestgauge.org/'+url.path,
               savedDir: (await getExternalStorageDirectory())!.path,
               showNotification:
                   true, // show download progress in status bar (for Android)
               openFileFromNotification:
                   true, // click on notification to open downloaded file (for Android)
+              saveInPublicStorage: true,
             );
           } else if (await Permission.storage.request().isPermanentlyDenied) {
             await openAppSettings();

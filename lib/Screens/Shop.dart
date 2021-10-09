@@ -45,7 +45,7 @@ class ShopState extends State<Shop> {
 
     FlutterDownloader.registerCallback(downloadCallback);
   }
-  
+
   @override
   void dispose() {
     IsolateNameServer.removePortNameMapping('downloader_send_port');
@@ -58,6 +58,7 @@ class ShopState extends State<Shop> {
         IsolateNameServer.lookupPortByName('downloader_send_port')!;
     send.send([id, status, progress]);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,6 +90,7 @@ class ShopState extends State<Shop> {
                   true, // show download progress in status bar (for Android)
               openFileFromNotification:
                   true, // click on notification to open downloaded file (for Android)
+              saveInPublicStorage: true,
             );
           } else if (await Permission.storage.request().isPermanentlyDenied) {
             await openAppSettings();
