@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
    <application
-        android:label="Eg Learning Center"
+        android:label="EG Learning Center"
         android:icon="@mipmap/ic_launcher">
         <provider
             android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
