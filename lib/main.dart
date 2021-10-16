@@ -148,6 +148,8 @@ class _HomeMenuState extends State<HomeMenu> {
             Expanded(
               child: GridView.count(
                 shrinkWrap: true,
+                primary: true,
+                physics: NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 crossAxisSpacing: 4.0,
                 mainAxisSpacing: 8.0,
