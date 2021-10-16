@@ -120,33 +120,34 @@ class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          // Icon(
-          //   Icons.school,
-          //   size: 150.0,
-          // ),
-          Image(
-            image: AssetImage('./img/logo.png'),
-            height: 180,
-            width: 150,
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              ' Welcome, Select option ',
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                backgroundColor: Colors.black45,
-                color: Colors.white,
-              ),
+      body: SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Image(
+                  image: AssetImage('./img/logo.png'),
+                  height: 180,
+                  width: 150,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    ' Welcome, Select option ',
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black45,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-
-          Expanded(
-            child: Card(
+            Expanded(
               child: GridView.count(
+                shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 4.0,
                 mainAxisSpacing: 8.0,
@@ -163,10 +164,9 @@ class _HomeMenuState extends State<HomeMenu> {
                   );
                 }),
               ),
-              color: Colors.black45,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       backgroundColor: Colors.green,
     );

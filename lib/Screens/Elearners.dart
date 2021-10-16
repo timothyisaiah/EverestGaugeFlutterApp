@@ -92,7 +92,8 @@ class _ElearnersState extends State<Elearners> {
           if (await Permission.storage.request().isGranted) {
             print("onDownloadStart $url");
             final taskId = await FlutterDownloader.enqueue(
-              url: 'https://everestgauge.org/'+url.path,
+              url: url.origin+url.path,
+              // url: 'https://everestgauge.org/'+url.path,
               savedDir: (await getExternalStorageDirectory())!.path,
               showNotification:
                   true, // show download progress in status bar (for Android)
