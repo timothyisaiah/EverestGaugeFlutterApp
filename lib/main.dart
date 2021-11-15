@@ -52,11 +52,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Image(
-            image: AssetImage('img/shop.png'),
-            height: 150,
-            width: 150,
+          Icon(
+            Icons.shopping_cart,
+            size: 150,
           ),
+          // Image(
+          //   image: AssetImage('img/shop.png'),
+          //   height: 150,
+          //   width: 150,
+          // ),
           Text('Shop'),
         ],
       ),
@@ -65,11 +69,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Image(
-            image: AssetImage('img/grades.png'),
-            height: 150,
-            width: 150,
+          Icon(
+            Icons.bar_chart,
+            size: 150,
           ),
+          // Image(
+          //   image: AssetImage('img/grades.png'),
+          //   height: 150,
+          //   width: 150,
+          // ),
           Text('Grader'),
         ],
       ),
@@ -79,11 +87,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Image(
-            image: AssetImage('img/learn.jpg'),
-            height: 150,
-            width: 150,
+          Icon(
+            Icons.stacked_line_chart,
+            size: 150,
           ),
+          // Image(
+          //   image: AssetImage('img/learn.jpg'),
+          //   height: 150,
+          //   width: 150,
+          // ),
           Text('Learning'),
         ],
       ),
@@ -93,11 +105,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Image(
-            image: AssetImage('img/report.png'),
-            height: 150,
-            width: 150,
+          Icon(
+            Icons.list_outlined,
+            size: 150,
           ),
+          // Image(
+          //   image: AssetImage('img/report.png'),
+          //   height: 150,
+          //   width: 150,
+          // ),
           Text('Reports'),
         ],
       ),
