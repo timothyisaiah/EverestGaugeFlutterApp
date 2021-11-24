@@ -52,15 +52,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.shopping_cart,
-            size: 150,
-          ),
-          // Image(
-          //   image: AssetImage('img/shop.png'),
-          //   height: 150,
-          //   width: 150,
+          // Icon(
+          //   Icons.shopping_cart,
+          //   size: 150,
           // ),
+          Image(
+            image: AssetImage('./img/shop.png'),
+            height: 150,
+            width: 150,
+          ),
           Text('Shop'),
         ],
       ),
@@ -69,15 +69,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.bar_chart,
-            size: 150,
-          ),
-          // Image(
-          //   image: AssetImage('img/grades.png'),
-          //   height: 150,
-          //   width: 150,
+          // Icon(
+          //   Icons.bar_chart,
+          //   size: 150,
           // ),
+          Image(
+            image: AssetImage('./img/grades.png'),
+            height: 150,
+            width: 150,
+          ),
           Text('Grader'),
         ],
       ),
@@ -87,15 +87,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.stacked_line_chart,
-            size: 150,
-          ),
-          // Image(
-          //   image: AssetImage('img/learn.jpg'),
-          //   height: 150,
-          //   width: 150,
+          // Icon(
+          //   Icons.stacked_line_chart,
+          //   size: 150,
           // ),
+          Image(
+            image: AssetImage('./img/learn.jpg'),
+            height: 150,
+            width: 150,
+          ),
           Text('Learning'),
         ],
       ),
@@ -105,15 +105,15 @@ class _HomeMenuState extends State<HomeMenu> {
       key: UniqueKey(),
       child: Column(
         children: const <Widget>[
-          Icon(
-            Icons.list_outlined,
-            size: 150,
-          ),
-          // Image(
-          //   image: AssetImage('img/report.png'),
-          //   height: 150,
-          //   width: 150,
+          // Icon(
+          //   Icons.list_outlined,
+          //   size: 150,
           // ),
+          Image(
+            image: AssetImage('./img/report.png'),
+            height: 150,
+            width: 150,
+          ),
           Text('Reports'),
         ],
       ),
@@ -159,30 +159,88 @@ class _HomeMenuState extends State<HomeMenu> {
                     ),
                   ),
                 ),
+                Expanded(
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    primary: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 8.0,
+                    children: List.generate(_cardsToDisplay.length, (index) {
+                      return InkWell(
+                        child: _cardsToDisplay[index],
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => _classViews[index]),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                ),
               ],
             ),
-            Expanded(
-              child: GridView.count(
-                shrinkWrap: true,
-                primary: true,
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 8.0,
-                children: List.generate(_cardsToDisplay.length, (index) {
-                  return InkWell(
-                    child: _cardsToDisplay[index],
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => _classViews[index]),
-                      );
-                    },
-                  );
-                }),
-              ),
-            ),
+            // InkWell(
+            //   child: _cardsToDisplay[0],
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => _classViews[0]),
+            //     );
+            //   },
+            // ),
+            // InkWell(
+            //   child: _cardsToDisplay[1],
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => _classViews[1]),
+            //     );
+            //   },
+            // ),
+            // InkWell(
+            //   child: _cardsToDisplay[2],
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => _classViews[2]),
+            //     );
+            //   },
+            // ),
+            // InkWell(
+            //   child: _cardsToDisplay[3],
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => _classViews[3]),
+            //     );
+            //   },
+            // ),
+            // // Expanded(
+            //   child: GridView.count(
+            //     shrinkWrap: true,
+            //     primary: true,
+            //     physics: NeverScrollableScrollPhysics(),
+            //     crossAxisCount: 2,
+            //     crossAxisSpacing: 4.0,
+            //     mainAxisSpacing: 8.0,
+            //     children: List.generate(_cardsToDisplay.length, (index) {
+            //       return InkWell(
+            //         child: _cardsToDisplay[index],
+            //         onTap: () {
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => _classViews[index]),
+            //           );
+            //         },
+            //       );
+            //     }),
+            //   ),
+            // ),
           ],
         ),
       ),
